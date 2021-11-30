@@ -9,7 +9,7 @@ public class Q07 {
 		 output : verilen array simetriktir
 		 */
 		
-		int arr1[] = { 12,13,14,1, 2, 3, 4, 4, 3, 2, 1,14,13,12};
+		int arr1[] = { 1, 2, 3, 4, 4, 3, 2, 1};
 		int count=0;
 		for (int i = 0; i < arr1.length/2; i++) {
 			if (arr1[i]!=arr1[(arr1.length-1)-i]) {
