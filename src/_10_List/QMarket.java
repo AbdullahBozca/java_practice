@@ -27,6 +27,7 @@ public class QMarket {
 	 */
 
 	public static void main(String[] args) {
+		
 		Scanner scan = new Scanner(System.in);
 		ArrayList<String> gunler = new ArrayList<String>(
 				Arrays.asList("Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"));
@@ -43,10 +44,10 @@ public class QMarket {
 		System.out.println("Ortalamanın üstünde olan günler " + ortalamaninUstu);
 		ArrayList<String> ortalamaninAlti = new ArrayList<String>();
 		ortalamaninAlti.addAll(getOrtalamaninAltindaKazancGünleri(ortalamaKazanc, gunler, gunlukKazanc));
-		System.out.println("Ortalmanın altında olan günler " + ortalamaninAlti);
+		System.out.println("Ortalamanın altında olan günler " + ortalamaninAlti);
 		for (int i = 0; i < gunler.size(); i++) {
 			if (ortalamaKazanc==gunlukKazanc.get(i)) {
-				System.out.println(gunler.get(i)+" haftalık ortalamada kazanç sağladınız.");
+				System.out.println(gunler.get(i)+" günü haftalık ortalamada kazanç sağladınız.");
 			}
 		}
 
@@ -81,7 +82,7 @@ public class QMarket {
 			toplam += gunlukKazanc.get(i);
 		}
 		ortalamaKazanc = toplam / gunlukKazanc.size();
-		System.out.println("Ortalma kazanaç: " + ortalamaKazanc);
+		System.out.println("Ortalama kazanç: " + ortalamaKazanc);
 		return ortalamaKazanc;
 	}
 }

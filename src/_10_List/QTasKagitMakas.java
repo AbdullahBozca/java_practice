@@ -8,7 +8,7 @@ public class QTasKagitMakas {
         // tas >makas
         // makas >kagit
         //kagit >tas
-
+    	
 
     }
 
