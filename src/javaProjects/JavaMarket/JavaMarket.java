@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class JavaMarket {
-	static ArrayList<String> urunler=new ArrayList<String>(Arrays.asList("Domates","Patates","Biber","Soğan","Havuç","Elma","Muz","Çilek","Kavun","Üzüm","Limon"));
-	static ArrayList<Double> urunFiyati= new ArrayList<Double>(Arrays.asList(2.10,3.20,1.50,2.30,3.10,1.20,1.90,6.10,4.30,2.70,0.50));	
-	static ArrayList<String> sepetUrun=new ArrayList<String>();
-	static ArrayList<Double> sepetKg=new ArrayList<Double>();
-	static ArrayList<Double> sepetFiyat=new ArrayList<Double>();
-	static Scanner scanner=new Scanner(System.in);
-	public static void main(String[] args) {
+    static List<String> urunler = new ArrayList<>(Arrays.asList("Domates", "Patates", "Biber", "Sogan", "Havuç", "Elma", "Muz", "Çilek", "Kavun", "Üzüm", "Limon"));
+    static List<Double> fiyatlar = new ArrayList<>(Arrays.asList(2.10, 3.20, 1.50, 2.30, 3.10, 1.20, 1.90, 6.10, 4.30, 2.70, 0.50));
+    static List<String> sepetUrunlerin = new ArrayList<>();
+    static List<Double> sepetKg = new ArrayList<>();
+    static List<Double> sepetFiyatlar = new ArrayList<>();
+    static Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) {
 
 		/* Basarili Market alış-veriş programı.
 		 *
@@ -38,59 +39,75 @@ public class JavaMarket {
 		 * 6. Eğer devam etmek istiyorsa yeniden ürün seçme kısmına yönlendiriniz.
 		 * 7. Eğer bitirmek istiyorsa ödemeyi kontrol edip para ustu hesaplayarak  programı bitirinzi.
 		 */
-		
-		String devam="";
-		double toplamFiyat=0;
-		do {
-			urunListesi();
-			System.out.println("Seçeceğiniz ürün kodu giriniz: ");
-			int urunNo=scanner.nextInt();
-			System.out.println("Kaç kilo alacaksınız :");
-			double kg=scanner.nextDouble();
-			sepetEkle(urunNo,kg);
-			toplamFiyat=sepetHesapla();
-			System.out.println("devam edeceksiniz e basınız.");
-			devam=scanner.next();
-		} while (devam.equalsIgnoreCase("e"));
-		odeme(toplamFiyat);
-		
-	}
 
-private static double sepetHesapla() {
-	double toplamTutar=0;	
-	for (Double each : sepetFiyat) {
-			toplamTutar+=each;
-		}
-		return toplamTutar;
-	}
+        String devam = "";
+        double toplamFiyat = 0;
+        do {
+            urunListesi();
+            System.out.print("sectiginiz urun kodunu giriniz : ");
+            int urunNo = scan.nextInt();
+            System.out.print("kac kilo alacaksiniz : ");
+            double kg = scan.nextDouble();
+            sepeteEkle(urunNo, kg);
+            toplamFiyat = sepetTutari();
+            System.out.println("dewam edecekseniz e yaziniz  :");
+            devam = scan.next();
 
-private static void odeme(double toplamFiyat) {
-	
-	System.out.println("Ödemeniz gereken toplam miktar: "+toplamFiyat);
-	double nakit=0;
-	do {
-		System.out.println("lütfen ödemenizi giriniz: ");
-		nakit=scanner.nextDouble();
-		
-	} while (nakit<toplamFiyat);
-	
-}
+        }
+        while (devam.equalsIgnoreCase("e"));
+        odeme(toplamFiyat);
 
-	private static void sepetEkle(int urunNo, double kg) {
-		sepetUrun.add(urunler.get(urunNo));
-		sepetKg.add(kg);
-		sepetFiyat.add(urunFiyati.get(urunNo)*kg);
-		
-		
-	}
+    }
+
+    private static double sepetTutari() {
 
 
+        double septTutar = 0;
+        double sptKg = 0;
+        for (int i = 0; i < sepetUrunlerin.size(); i++) {
+            septTutar += sepetFiyatlar.get(i);
+            sptKg += sepetKg.get(i);
+        }
+        System.out.println("toplam odemeniz gereken miktar : " + septTutar + " aliginiz urun miktari :" + sptKg);
+        return septTutar;
+    }
 
-	private static void urunListesi() {
-		System.out.println(" No\t\t Urunler\t\t Fiyatlar");
-		System.out.println("=====\t\t=========\t\t===========");
-		for (int i = 0; i <urunler.size() ; i++) {
-			System.out.println(" "+i+"\t\t"+urunler.get(i)+"\t\t\t"+urunFiyati.get(i)+" TL");
-		}
-	}
+    private static void odeme(double toplamFiyat) {
+
+        System.out.println("odemeniz gereken miktar : " + toplamFiyat);
+        double nakit = 0;
+        do {
+            System.out.print("lutfern nakit odemenizi girirniz : ");
+
+            nakit += scan.nextDouble();
+            if (nakit < toplamFiyat) {
+                System.out.println("eksik odeme yaptiniz " + (toplamFiyat - nakit) + " daha odeme yapiniz");
+            }
+        }
+        while (nakit < toplamFiyat);
+        double paraUstu = nakit - toplamFiyat;
+        if (paraUstu > 0) {
+            System.out.println("para ustunuz : " + paraUstu);
+        }
+
+        System.out.println("yine bekleriz iii gunler");
+
+    }
+
+    private static void sepeteEkle(int urunNo, double kg) {
+        sepetUrunlerin.add(urunler.get(urunNo));
+        sepetKg.add(kg);
+        sepetFiyatlar.add(fiyatlar.get(urunNo) * kg);
+
+    }
+
+    private static void urunListesi() {
+        System.out.println(" No\t Urunler \t Fiyatlar");
+        System.out.println("====\t ======== \t =======");
+
+        for (int i = 0; i < urunler.size(); i++) {
+            System.out.println(" " + i + "\t" + urunler.get(i) + "\t" + fiyatlar.get(i));
+
+        }
+    }
 }
