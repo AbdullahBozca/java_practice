@@ -46,7 +46,7 @@ public class OgrenciMethod {
 				for (int i = 0; i < ogrenciNot.getDersAdi().size(); i++) {
 					System.out.print(ogrenciNot.getDersAdi().get(i) + " : ");
 					int not = scanner.nextInt();
-					ogrenciNot.setDersNotu();
+					//ogrenciNot.setDersNotu();
 				}
 			} else
 				System.out.println("Öğrenci bulunamadı!!!");
