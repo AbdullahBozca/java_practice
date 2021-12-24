@@ -37,7 +37,7 @@ public class AracRunner {
 	static int aracNo = 99;
 
 	public static void main(String[] args) {
-		aracEkle(aracListesi);
+		//aracEkle(aracListesi);
 		// musteriBilgileri(musteriBilgileri);
 		Menu();
 
